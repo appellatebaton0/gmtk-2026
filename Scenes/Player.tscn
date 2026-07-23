@@ -9,10 +9,10 @@
 size = Vector2(14, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncx8q"]
-size = Vector2(18, 6.667)
+size = Vector2(18, 8.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kyqiw"]
-size = Vector2(6, 24)
+size = Vector2(13, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u7x0b"]
 atlas = ExtResource("2_gntrk")
@@ -333,22 +333,22 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="Right" type="CollisionShape2D" parent="Area2D" unique_id=650746539]
-position = Vector2(12.8, 0)
+position = Vector2(13, -4.3999996)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_ncx8q")
 
 [node name="Left" type="CollisionShape2D" parent="Area2D" unique_id=947485942]
-position = Vector2(-12.8, 0)
+position = Vector2(-13.125, -4.3999996)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_ncx8q")
 
 [node name="Down" type="CollisionShape2D" parent="Area2D" unique_id=1656603872]
-position = Vector2(0, 9.6)
+position = Vector2(-4.3711523e-09, 5.1000004)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_kyqiw")
 
 [node name="Up" type="CollisionShape2D" parent="Area2D" unique_id=762481332]
-position = Vector2(0, -9.6)
+position = Vector2(0, -14)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_kyqiw")
 
@@ -357,9 +357,11 @@ modulate = Color(1.8247963, 1.8247963, 1.8247963, 0.3372549)
 texture_filter = 1
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_v4dds")
-animation = &"Vertical"
-frame = 12
+animation = &"Horizontal"
+frame = 10
 frame_progress = 1.0
+flip_h = true
+flip_v = true
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1071092971]
 texture_filter = 1

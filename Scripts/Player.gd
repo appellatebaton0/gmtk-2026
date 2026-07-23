@@ -174,5 +174,3 @@ func enable_collider(direction:Vector2) -> void:
 
 func _on_body_hit(body: Node2D) -> void:
 	if body is Puck: body.hit(attack_direction * attack_damage)
-	print(attack_direction)
-	pass # Replace with function body.
