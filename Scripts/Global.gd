@@ -65,6 +65,5 @@ func end_attempt() -> void:
 
 func _process(delta: float) -> void:
 	attempt_timer = move_toward(attempt_timer, 0., delta)
-	if attempt_timer >0: print(attempt_timer)
 	
 	

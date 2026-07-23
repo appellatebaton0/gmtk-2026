@@ -11,12 +11,14 @@ const FRICTION := 3.0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
+	$AnimatedSprite2D.speed_scale = velocity.distance_to(Vector2.ZERO) / 60.
+	$AnimatedSprite2D.play("default")
 	
 	if hitstop_timer > 0.0:
-		$Sprite2D.offset = Vector2(randf(), randf()) * 2.
+		$AnimatedSprite2D.offset = Vector2(randf(), randf()) * 2.
 		hitstop_timer = move_toward(hitstop_timer, 0.0, delta)
 	else:
-		$Sprite2D.offset = Vector2.ZERO
+		$AnimatedSprite2D.offset = Vector2.ZERO
 		
 		var collision_info = move_and_collide(velocity * delta)
 		if collision_info:

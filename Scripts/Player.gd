@@ -70,6 +70,8 @@ var attack_direction := Vector2.RIGHT
 
 func _ready() -> void:
 	
+	add_to_group("Player")
+	
 	## Disable all the attack colliders to start.
 	disable_colliders()
 	

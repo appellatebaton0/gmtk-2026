@@ -2,11 +2,83 @@
 
 [ext_resource type="Texture2D" uid="uid://bxfkwbgyncdp" path="res://Assets/Textures/Puck.png" id="1_5ddw5"]
 [ext_resource type="Script" uid="uid://blhblgl6vuper" path="res://Scripts/Puck.gd" id="1_kf2af"]
+[ext_resource type="Shader" uid="uid://cv37b3j8bva31" path="res://Assets/Shaders/ColorGlow.gdshader" id="2_en636"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncx8q"]
 size = Vector2(16, 12)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kf2af"]
+shader = ExtResource("2_en636")
+shader_parameter/threshold = 0.1
+shader_parameter/target_color = Color(1, 0.8784314, 0.7176471, 1)
+shader_parameter/result_color = Color(2.2996764, 1.4316093, 0.5635419, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf2af"]
+atlas = ExtResource("1_5ddw5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_en636"]
+atlas = ExtResource("1_5ddw5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d472w"]
+atlas = ExtResource("1_5ddw5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf2oo"]
+atlas = ExtResource("1_5ddw5")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1d5sf"]
+atlas = ExtResource("1_5ddw5")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m56pv"]
+atlas = ExtResource("1_5ddw5")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5w5c"]
+atlas = ExtResource("1_5ddw5")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqlqj"]
+atlas = ExtResource("1_5ddw5")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dhcmq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kf2af")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_en636")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d472w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf2oo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1d5sf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m56pv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5w5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqlqj")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Puck" type="CharacterBody2D" unique_id=686180773]
+y_sort_enabled = true
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("1_kf2af")
@@ -14,7 +86,10 @@ script = ExtResource("1_kf2af")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=813560207]
 shape = SubResource("RectangleShape2D_ncx8q")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1516124654]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=178024057]
+y_sort_enabled = true
 texture_filter = 1
+material = SubResource("ShaderMaterial_kf2af")
 position = Vector2(0, -2)
-texture = ExtResource("1_5ddw5")
+sprite_frames = SubResource("SpriteFrames_dhcmq")
+frame_progress = 0.21031865
