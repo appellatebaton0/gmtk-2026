@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dwbp825t03lay"]
+
+[ext_resource type="Texture2D" uid="uid://bxfkwbgyncdp" path="res://Assets/Textures/Puck.png" id="1_5ddw5"]
+[ext_resource type="Script" uid="uid://blhblgl6vuper" path="res://Scripts/Puck.gd" id="1_kf2af"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncx8q"]
+size = Vector2(16, 12)
+
+[node name="Puck" type="CharacterBody2D" unique_id=686180773]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_kf2af")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=813560207]
+shape = SubResource("RectangleShape2D_ncx8q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1516124654]
+texture_filter = 1
+position = Vector2(0, -2)
+texture = ExtResource("1_5ddw5")

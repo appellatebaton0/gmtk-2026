@@ -135,6 +135,8 @@ func _process(delta: float) -> void:
 		
 		velocity = Vector2.ZERO
 		
+		atk_anim.stop()
+		
 		if attack_direction.x != 0:
 			atk_anim.play("Horizontal")
 			
@@ -166,5 +168,11 @@ func enable_collider(direction:Vector2) -> void:
 	if not attack_colliders.has(direction): return
 	
 	disable_colliders()
-	print(attack_colliders[direction])
 	attack_colliders[direction].disabled = false
+
+
+
+func _on_body_hit(body: Node2D) -> void:
+	if body is Puck: body.hit(attack_direction * attack_damage)
+	print(attack_direction)
+	pass # Replace with function body.

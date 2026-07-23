@@ -3,6 +3,35 @@
 [ext_resource type="TileSet" uid="uid://b0sxh1af74abg" path="res://Assets/Resources/Tileset.tres" id="1_r150o"]
 [ext_resource type="Script" uid="uid://dng6hkdv3fdx8" path="res://Scripts/Camera.gd" id="2_idj7w"]
 [ext_resource type="PackedScene" uid="uid://bk3rtxa1ypj1p" path="res://Scenes/Player.tscn" id="2_kln2b"]
+[ext_resource type="Environment" uid="uid://bolc6k8s8npy5" path="res://Assets/Resources/Environment.tres" id="4_rgh2o"]
+[ext_resource type="PackedScene" uid="uid://dwbp825t03lay" path="res://Scenes/Puck.tscn" id="5_pbw6q"]
+
+[sub_resource type="GDScript" id="GDScript_dhcmq"]
+script/source = "@tool
+extends Node2D
+
+@onready var a_node:Node2D = $A
+@onready var b_node:Node2D = $B
+
+func _process(delta: float) -> void:
+	queue_redraw()
+
+func _draw() -> void:
+	
+	var a := a_node.position.normalized()
+	var b := b_node.position.normalized()
+	
+	draw_line(Vector2.ZERO, a * 20, Color.RED , 1.0)
+	draw_line(Vector2.ZERO, b * 20, Color.BLUE, 1.0)
+	
+	#c=b-2(d dot n)n
+	var c = b - (2 * b.dot(a) * a)
+	
+	draw_line(Vector2.ZERO, c * 20, Color.GREEN, 1.0)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhcmq"]
+size = Vector2(431, 12)
 
 [node name="Main" type="Node" unique_id=1246740861]
 
@@ -16,5 +45,43 @@ position = Vector2(24, 18)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=554506989]
 position = Vector2(24, 18)
-zoom = Vector2(4, 4)
+zoom = Vector2(2.5, 2.5)
 script = ExtResource("2_idj7w")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1072975527]
+environment = ExtResource("4_rgh2o")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1605340611]
+color = Color(0.9122889, 0.9122889, 0.9122887, 1)
+
+[node name="Puck" parent="." unique_id=2011018015 instance=ExtResource("5_pbw6q")]
+position = Vector2(-40, -6)
+
+[node name="TestingGround" type="Node2D" parent="." unique_id=968163292]
+script = SubResource("GDScript_dhcmq")
+
+[node name="A" type="Node2D" parent="TestingGround" unique_id=636193194]
+position = Vector2(-27, 0)
+
+[node name="B" type="Node2D" parent="TestingGround" unique_id=1196630460]
+position = Vector2(0, -9)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=713072858]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=996545147]
+position = Vector2(151.5, -30)
+shape = SubResource("RectangleShape2D_dhcmq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=2091323191]
+position = Vector2(151, 282)
+shape = SubResource("RectangleShape2D_dhcmq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1323720647]
+position = Vector2(-70, 128)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_dhcmq")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=491503920]
+position = Vector2(373, 128)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_dhcmq")
