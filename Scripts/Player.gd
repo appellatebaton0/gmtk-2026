@@ -21,6 +21,14 @@ const ATK_INPUTS:Dictionary[String, Vector2] = {
 }
 
 @onready var health := Health.new(20.)
+@onready var record := InputRecording.new([
+	"Dash:Just:Dash", 
+	"Move:Vec2:MoveLeft,MoveRight,MoveUp,MoveDown", 
+	"AtkRight:Just:AtkRight",
+	"AtkLeft:Just:AtkLeft",
+	"AtkUp:Just:AtkUp",
+	"AtkDown:Just:AtkDown",
+	])
 
 @export var movement_speed        := 50.
 @export var movement_acceleration := 14.
@@ -64,6 +72,9 @@ func _ready() -> void:
 	
 	## Disable all the attack colliders to start.
 	disable_colliders()
+	
+	record.begin_recording()
+	print(record.input_bank, "/", record.input_ids)
 
 func _process(delta: float) -> void:
 	
@@ -157,6 +168,8 @@ func _process(delta: float) -> void:
 	if velocity.x != 0: anim.flip_h = velocity.x < 0
 	
 	move_and_slide()
+	
+	record.listen(delta)
 
 ## -- Attack Helper Functions -- ##
 
