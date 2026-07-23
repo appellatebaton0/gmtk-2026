@@ -15,12 +15,15 @@ run/main_scene="uid://cfcay7b1ivteq"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*uid://doyd85lgqwukr"
+
 [display]
 
 window/size/viewport_width=384
 window/size/viewport_height=216
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [editor_plugins]
 
@@ -29,6 +32,7 @@ enabled=PackedStringArray("res://addons/godot-hackatime/plugin.cfg", "res://addo
 [global_group]
 
 Player="The player."
+PlaybackPlayer=""
 
 [input]
 

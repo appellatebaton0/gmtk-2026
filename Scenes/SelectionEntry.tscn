@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dqmfjo4hd7j7w"]
+
+[ext_resource type="FontFile" uid="uid://c0nx7ybhwptxh" path="res://Assets/Fonts/upheaval-tt-brk.upheaval-tt-brk.ttf" id="1_0sxh6"]
+[ext_resource type="Script" uid="uid://b3kxbf35vkiym" path="res://Scripts/SelectionEntry.gd" id="1_heyrd"]
+
+[node name="SelectionEntry" type="PanelContainer" unique_id=1742290694]
+custom_minimum_size = Vector2(64, 90)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_heyrd")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1785271797]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1592911491]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=568044152]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_0sxh6")
+theme_override_font_sizes/font_size = 15
+text = "BODY 1"
+horizontal_alignment = 1
+
+[node name="Delete" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1167313694]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0sxh6")
+theme_override_font_sizes/font_size = 16
+text = "X"
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer" unique_id=941949763]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=945016297]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0sxh6")
+theme_override_font_sizes/font_size = 16
+text = "GO"

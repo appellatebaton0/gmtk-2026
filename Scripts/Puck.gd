@@ -3,7 +3,7 @@ class_name Puck extends CharacterBody2D
 # The conversion rate between force and speed.
 const CONVERSION_RATE := 0.5
 
-const HITSTOP_LENGTH := 0.4
+const HITSTOP_LENGTH := 0.1
 var hitstop_timer := 0.0
 
 const FRICTION := 3.0
@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0.0, FRICTION * delta)
 		velocity.y = move_toward(velocity.y, 0.0, FRICTION * delta)
 
-func hit(with:Vector2):
+func hit(with:Vector2): if hitstop_timer == 0:
 	var direction := with.normalized()
 	
 	hitstop_timer = HITSTOP_LENGTH

@@ -1,6 +1,5 @@
-class_name Player extends CharacterBody2D
-## The currently active player. We'll have a separate class for
-## the recorded ones.
+class_name PlaybackPlayer extends CharacterBody2D
+## A playback agent for a previous attempt. Timeloop!
 
 @onready var anim     := $Sprite2D
 @onready var atk_anim := $AttackAnim
@@ -21,14 +20,7 @@ const ATK_INPUTS:Dictionary[String, Vector2] = {
 }
 
 @onready var health := Health.new(20.)
-@onready var record := InputRecording.new([
-	"Dash:Just:Dash", 
-	"Move:Vec2:MoveLeft,MoveRight,MoveUp,MoveDown", 
-	"AtkRight:Just:AtkRight",
-	"AtkLeft:Just:AtkLeft",
-	"AtkUp:Just:AtkUp",
-	"AtkDown:Just:AtkDown",
-	])
+@onready var record:InputRecording
 
 @export var movement_speed        := 50.
 @export var movement_acceleration := 14.
@@ -68,18 +60,27 @@ var attack_timer     := 0.0:
 			attack_timer = to
 var attack_direction := Vector2.RIGHT
 
+var inputs:Dictionary[String, InputRecording.InputRecord]
+
 func _ready() -> void:
 	
 	## Disable all the attack colliders to start.
 	disable_colliders()
 	
-	record.begin_recording()
-	print(record.input_bank, "/", record.input_ids)
+	record.begin_playback()
+	
+	# Put the inputs in a dict by name for easy access.
+	for input in record.input_bank:
+		inputs[input.get_name()] = input
+
 
 func _process(delta: float) -> void:
 	
+	record.playback(delta)
+	
+	
 	#region Moving
-	var move_direction := Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
+	var move_direction := inputs["Move"].get_value() as Vector2
 	
 	if dash_timer <= 0 and attack_timer <= 0:
 		if move_direction:
@@ -110,7 +111,7 @@ func _process(delta: float) -> void:
 	
 	## Buffer the dash input.
 	dash_buffering = move_toward(dash_buffering, 0.0, delta)
-	if Input.is_action_just_pressed("Dash"): dash_buffering = dash_buffer
+	if inputs["Dash"].get_value(): dash_buffering = dash_buffer
 	
 	## Can dash and trying to? THEN DO IT.
 	if dash_timer == 0. and dash_buffering > 0. and attack_timer <= 0.:
@@ -132,7 +133,7 @@ func _process(delta: float) -> void:
 	## Buffer the attack input.
 	attack_buffering = move_toward(attack_buffering, 0.0, delta)
 	for input in ATK_INPUTS:
-		if Input.is_action_just_pressed(input):
+		if inputs[input].get_value():
 			attack_direction = ATK_INPUTS[input]
 			attack_buffering = attack_buffer
 			break
@@ -168,8 +169,6 @@ func _process(delta: float) -> void:
 	if velocity.x != 0: anim.flip_h = velocity.x < 0
 	
 	move_and_slide()
-	
-	record.listen(delta)
 
 ## -- Attack Helper Functions -- ##
 

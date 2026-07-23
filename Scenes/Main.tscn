@@ -1,12 +1,9 @@
-[gd_scene format=4 uid="uid://cfcay7b1ivteq"]
+[gd_scene format=3 uid="uid://cfcay7b1ivteq"]
 
-[ext_resource type="TileSet" uid="uid://b0sxh1af74abg" path="res://Assets/Resources/Tileset.tres" id="1_r150o"]
-[ext_resource type="Script" uid="uid://dng6hkdv3fdx8" path="res://Scripts/Camera.gd" id="2_idj7w"]
-[ext_resource type="PackedScene" uid="uid://bk3rtxa1ypj1p" path="res://Scenes/Player.tscn" id="2_kln2b"]
-[ext_resource type="Environment" uid="uid://bolc6k8s8npy5" path="res://Assets/Resources/Environment.tres" id="4_rgh2o"]
-[ext_resource type="PackedScene" uid="uid://dwbp825t03lay" path="res://Scenes/Puck.tscn" id="5_pbw6q"]
 [ext_resource type="FontFile" uid="uid://du4u6i1j13tpb" path="res://Assets/Fonts/pixeloid.sans-bold.ttf" id="6_jw32o"]
 [ext_resource type="FontFile" uid="uid://c0nx7ybhwptxh" path="res://Assets/Fonts/upheaval-tt-brk.upheaval-tt-brk.ttf" id="7_50glp"]
+[ext_resource type="Script" uid="uid://c5cb8jtmotofr" path="res://Scripts/BodySelector.gd" id="8_vy5pj"]
+[ext_resource type="PackedScene" uid="uid://dqmfjo4hd7j7w" path="res://Scenes/SelectionEntry.tscn" id="9_bmxlf"]
 
 [sub_resource type="GDScript" id="GDScript_dhcmq"]
 script/source = "@tool
@@ -40,30 +37,428 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.52156866, 0.37254903, 0.22352941, 1)
 
+[sub_resource type="Animation" id="Animation_jw32o"]
+resource_name = "In"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu/MarginContainer/VBoxContainer/VBoxContainer2/Button:offset_transform_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-150, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMenu/MarginContainer/VBoxContainer/VBoxContainer2/Button2:offset_transform_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-150, 0), Vector2(-150, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu/MarginContainer/VBoxContainer/VBoxContainer2/Button3:offset_transform_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-150, 0), Vector2(-150, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4kpch"]
+resource_name = "Main->Selector"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu/MarginContainer/VBoxContainer/VBoxContainer2/Button:offset_transform_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.19999999, 0.39999998),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-150, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMenu/MarginContainer/VBoxContainer/VBoxContainer2/Button2:offset_transform_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-150, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu/MarginContainer/VBoxContainer/VBoxContainer2/Button3:offset_transform_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.9802322e-08, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-150, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainMenu/MarginContainer/VBoxContainer/VBoxContainer/Title:offset_transform_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.46666664),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(10, 0), Vector2(-180, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BodySelector:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BodySelector/HBoxContainer/PanelContainer:offset_transform_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 200), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BodySelector/HBoxContainer/PanelContainer2:offset_transform_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.4, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 200), Vector2(0, 200), Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BodySelector/HBoxContainer/PanelContainer3:offset_transform_position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 200), Vector2(0, 200), Vector2(0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BodySelector/HBoxContainer/PanelContainer4:offset_transform_position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.4, 0.7, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 200), Vector2(0, 200), Vector2(0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BodySelector/HBoxContainer/PanelContainer5:offset_transform_position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.4, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 200), Vector2(0, 200), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_50glp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu/MarginContainer/VBoxContainer/VBoxContainer2/Button:offset_transform_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-150, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMenu/MarginContainer/VBoxContainer/VBoxContainer2/Button2:offset_transform_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-150, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu/MarginContainer/VBoxContainer/VBoxContainer2/Button3:offset_transform_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-150, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainMenu/MarginContainer/VBoxContainer/VBoxContainer/Title:offset_transform_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BodySelector:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BodySelector/HBoxContainer/PanelContainer:offset_transform_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 200)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BodySelector/HBoxContainer/PanelContainer2:offset_transform_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 200)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BodySelector/HBoxContainer/PanelContainer3:offset_transform_position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 200)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BodySelector/HBoxContainer/PanelContainer4:offset_transform_position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 200)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BodySelector/HBoxContainer/PanelContainer5:offset_transform_position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 200)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("MainMenu:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("MainMenu:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_pbw6q"]
+resource_name = "Selector->Game"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodySelector/HBoxContainer/PanelContainer:offset_transform_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.12, 0.22),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 200)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BodySelector/HBoxContainer/PanelContainer2:offset_transform_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.09, 0.19),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 200)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BodySelector/HBoxContainer/PanelContainer3:offset_transform_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.06, 0.16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 200)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BodySelector/HBoxContainer/PanelContainer4:offset_transform_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.03, 0.13),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 200)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BodySelector/HBoxContainer/PanelContainer5:offset_transform_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 200)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MainMenu:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.06666666, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MainMenu:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.37749305, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BodySelector:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.37749305, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vy5pj"]
+_data = {
+&"In": SubResource("Animation_jw32o"),
+&"Main->Selector": SubResource("Animation_4kpch"),
+&"RESET": SubResource("Animation_50glp"),
+&"Selector->Game": SubResource("Animation_pbw6q")
+}
+
 [node name="Main" type="Node" unique_id=1246740861]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=615739161]
-texture_filter = 1
-tile_map_data = PackedByteArray("AAD8//7/AAAAAAAAAAD8////AAAAAAAAAAD8/wAAAAAAAAAAAAD8/wEAAAAAAAAAAAD8/wIAAAAAAAAAAAD8/wMAAAAAAAAAAAD8/wQAAAAAAAAAAAD8/wUAAAAAAAAAAAD8/wYAAAAAAAAAAAD8/wcAAAAAAAAAAAD8/wgAAAAAAAAAAAD8/wkAAAAAAAAAAAD8/woAAAAAAAAAAAD8/wsAAAAAAAAAAAD8/wwAAAAAAAAAAAD8/w0AAAAAAAAAAAD8/w4AAAAAAAAAAAD8/w8AAAAAAAAAAAD8/xAAAAAAAAAAAAD8/xEAAAAAAAAAAAD8/xIAAAAAAAAAAAD8/xMAAAAAAAAAAAD8/xQAAAAAAAAAAAD8/xUAAAAAAAAAAAD8/xYAAAAAAAAAAAD9//7/AAAAAAAAAAD9////AAAAAAAAAAD9/wAAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wQAAAAAAAAAAAD9/wUAAAAAAAAAAAD9/wYAAAAAAAAAAAD9/wcAAAAAAAAAAAD9/wgAAAAAAAAAAAD9/wkAAAAAAAAAAAD9/woAAAAAAAAAAAD9/wsAAAAAAAAAAAD9/wwAAAAAAAAAAAD9/w0AAAAAAAAAAAD9/w4AAAAAAAAAAAD9/w8AAAAAAAAAAAD9/xAAAAAAAAAAAAD9/xEAAAAAAAAAAAD9/xIAAAAAAAAAAAD9/xMAAAAAAAAAAAD9/xQAAAAAAAAAAAD9/xUAAAAAAAAAAAD9/xYAAAAAAAAAAAD+//7/AAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD+/wMAAAAAAAAAAAD+/wQAAAAAAAAAAAD+/wUAAAAAAAAAAAD+/wYAAAAAAAAAAAD+/wcAAAAAAAAAAAD+/wgAAAAAAAAAAAD+/wkAAAAAAAAAAAD+/woAAAAAAAAAAAD+/wsAAAAAAAAAAAD+/wwAAAAAAAAAAAD+/w0AAAAAAAAAAAD+/w4AAAAAAAAAAAD+/w8AAAAAAAAAAAD+/xAAAAAAAAAAAAD+/xEAAAAAAAAAAAD+/xIAAAAAAAAAAAD+/xMAAAAAAAAAAAD+/xQAAAAAAAAAAAD+/xUAAAAAAAAAAAD+/xYAAAAAAAAAAAD///7/AAAAAAAAAAD/////AAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAD//wYAAAAAAAAAAAD//wcAAAAAAAAAAAD//wgAAAAAAAAAAAD//wkAAAAAAAAAAAD//woAAAAAAAAAAAD//wsAAAAAAAAAAAD//wwAAAAAAAAAAAD//w0AAAAAAAAAAAD//w4AAAAAAAAAAAD//w8AAAAAAAAAAAD//xAAAAAAAAAAAAD//xEAAAAAAAAAAAD//xIAAAAAAAAAAAD//xMAAAAAAAAAAAD//xQAAAAAAAAAAAD//xUAAAAAAAAAAAD//xYAAAAAAAAAAAAAAP7/AAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA8AAAAAAAAAAAAAABAAAAAAAAAAAAAAABEAAAAAAAAAAAAAABIAAAAAAAAAAAAAABMAAAAAAAAAAAAAABQAAAAAAAAAAAAAABUAAAAAAAAAAAAAABYAAAAAAAAAAAABAP7/AAAAAAAAAAABAP//AAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAAAAAABAAoAAAAAAAAAAAABAAsAAAAAAAAAAAABAAwAAAAAAAAAAAABAA0AAAAAAAAAAAABAA4AAAAAAAAAAAABAA8AAAAAAAAAAAABABAAAAAAAAAAAAABABEAAAAAAAAAAAABABIAAAAAAAAAAAABABMAAAAAAAAAAAABABQAAAAAAAAAAAABABUAAAAAAAAAAAABABYAAAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAAAAAAAAAACAAwAAAAAAAAAAAACAA0AAAAAAAAAAAACAA4AAAAAAAAAAAACAA8AAAAAAAAAAAACABAAAAAAAAAAAAACABEAAAAAAAAAAAACABIAAAAAAAAAAAACABMAAAAAAAAAAAACABQAAAAAAAAAAAACABUAAAAAAAAAAAACABYAAAAAAAAAAAADAP7/AAAAAAAAAAADAP//AAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAADAAYAAAAAAAAAAAADAAcAAAAAAAAAAAADAAgAAAAAAAAAAAADAAkAAAAAAAAAAAADAAoAAAAAAAAAAAADAAsAAAAAAAAAAAADAAwAAAAAAAAAAAADAA0AAAAAAAAAAAADAA4AAAAAAAAAAAADAA8AAAAAAAAAAAADABAAAAAAAAAAAAADABEAAAAAAAAAAAADABIAAAAAAAAAAAADABMAAAAAAAAAAAADABQAAAAAAAAAAAADABUAAAAAAAAAAAADABYAAAAAAAAAAAAEAP7/AAAAAAAAAAAEAP//AAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAAAAAAEAAgAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAAoAAAAAAAAAAAAEAAsAAAAAAAAAAAAEAAwAAAAAAAAAAAAEAA0AAAAAAAAAAAAEAA4AAAAAAAAAAAAEAA8AAAAAAAAAAAAEABAAAAAAAAAAAAAEABEAAAAAAAAAAAAEABIAAAAAAAAAAAAEABMAAAAAAAAAAAAEABQAAAAAAAAAAAAEABUAAAAAAAAAAAAEABYAAAAAAAAAAAAFAP7/AAAAAAAAAAAFAP//AAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAUAAAAAAAAAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAoAAAAAAAAAAAAFAAsAAAAAAAAAAAAFAAwAAAAAAAAAAAAFAA0AAAAAAAAAAAAFAA4AAAAAAAAAAAAFAA8AAAAAAAAAAAAFABAAAAAAAAAAAAAFABEAAAAAAAAAAAAFABIAAAAAAAAAAAAFABMAAAAAAAAAAAAFABQAAAAAAAAAAAAFABUAAAAAAAAAAAAFABYAAAAAAAAAAAAGAP7/AAAAAAAAAAAGAP//AAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAGAAoAAAAAAAAAAAAGAAsAAAAAAAAAAAAGAAwAAAAAAAAAAAAGAA0AAAAAAAAAAAAGAA4AAAAAAAAAAAAGAA8AAAAAAAAAAAAGABAAAAAAAAAAAAAGABEAAAAAAAAAAAAGABIAAAAAAAAAAAAGABMAAAAAAAAAAAAGABQAAAAAAAAAAAAGABUAAAAAAAAAAAAGABYAAAAAAAAAAAAHAP7/AAAAAAAAAAAHAP//AAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAAAAHAAkAAAAAAAAAAAAHAAoAAAAAAAAAAAAHAAsAAAAAAAAAAAAHAAwAAAAAAAAAAAAHAA0AAAAAAAAAAAAHAA4AAAAAAAAAAAAHAA8AAAAAAAAAAAAHABAAAAAAAAAAAAAHABEAAAAAAAAAAAAHABIAAAAAAAAAAAAHABMAAAAAAAAAAAAHABQAAAAAAAAAAAAHABUAAAAAAAAAAAAHABYAAAAAAAAAAAAIAP7/AAAAAAAAAAAIAP//AAAAAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAIAAoAAAAAAAAAAAAIAAsAAAAAAAAAAAAIAAwAAAAAAAAAAAAIAA0AAAAAAAAAAAAIAA4AAAAAAAAAAAAIAA8AAAAAAAAAAAAIABAAAAAAAAAAAAAIABEAAAAAAAAAAAAIABIAAAAAAAAAAAAIABMAAAAAAAAAAAAIABQAAAAAAAAAAAAIABUAAAAAAAAAAAAIABYAAAAAAAAAAAAJAP7/AAAAAAAAAAAJAP//AAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAkAAAAAAAAAAAAJAAoAAAAAAAAAAAAJAAsAAAAAAAAAAAAJAAwAAAAAAAAAAAAJAA0AAAAAAAAAAAAJAA4AAAAAAAAAAAAJAA8AAAAAAAAAAAAJABAAAAAAAAAAAAAJABEAAAAAAAAAAAAJABIAAAAAAAAAAAAJABMAAAAAAAAAAAAJABQAAAAAAAAAAAAJABUAAAAAAAAAAAAJABYAAAAAAAAAAAAKAP7/AAAAAAAAAAAKAP//AAAAAAAAAAAKAAAAAAAAAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAkAAAAAAAAAAAAKAAoAAAAAAAAAAAAKAAsAAAAAAAAAAAAKAAwAAAAAAAAAAAAKAA0AAAAAAAAAAAAKAA4AAAAAAAAAAAAKAA8AAAAAAAAAAAAKABAAAAAAAAAAAAAKABEAAAAAAAAAAAAKABIAAAAAAAAAAAAKABMAAAAAAAAAAAAKABQAAAAAAAAAAAAKABUAAAAAAAAAAAAKABYAAAAAAAAAAAALAP7/AAAAAAAAAAALAP//AAAAAAAAAAALAAAAAAAAAAAAAAALAAEAAAAAAAAAAAALAAIAAAAAAAAAAAALAAMAAAAAAAAAAAALAAQAAAAAAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAALAAkAAAAAAAAAAAALAAoAAAAAAAAAAAALAAsAAAAAAAAAAAALAAwAAAAAAAAAAAALAA0AAAAAAAAAAAALAA4AAAAAAAAAAAALAA8AAAAAAAAAAAALABAAAAAAAAAAAAALABEAAAAAAAAAAAALABIAAAAAAAAAAAALABMAAAAAAAAAAAALABQAAAAAAAAAAAALABUAAAAAAAAAAAALABYAAAAAAAAAAAAMAP7/AAAAAAAAAAAMAP//AAAAAAAAAAAMAAAAAAAAAAAAAAAMAAEAAAAAAAAAAAAMAAIAAAAAAAAAAAAMAAMAAAAAAAAAAAAMAAQAAAAAAAAAAAAMAAUAAAAAAAAAAAAMAAYAAAAAAAAAAAAMAAcAAAAAAAAAAAAMAAgAAAAAAAAAAAAMAAkAAAAAAAAAAAAMAAoAAAAAAAAAAAAMAAsAAAAAAAAAAAAMAAwAAAAAAAAAAAAMAA0AAAAAAAAAAAAMAA4AAAAAAAAAAAAMAA8AAAAAAAAAAAAMABAAAAAAAAAAAAAMABEAAAAAAAAAAAAMABIAAAAAAAAAAAAMABMAAAAAAAAAAAAMABQAAAAAAAAAAAAMABUAAAAAAAAAAAAMABYAAAAAAAAAAAANAP7/AAAAAAAAAAANAP//AAAAAAAAAAANAAAAAAAAAAAAAAANAAEAAAAAAAAAAAANAAIAAAAAAAAAAAANAAMAAAAAAAAAAAANAAQAAAAAAAAAAAANAAUAAAAAAAAAAAANAAYAAAAAAAAAAAANAAcAAAAAAAAAAAANAAgAAAAAAAAAAAANAAkAAAAAAAAAAAANAAoAAAAAAAAAAAANAAsAAAAAAAAAAAANAAwAAAAAAAAAAAANAA0AAAAAAAAAAAANAA4AAAAAAAAAAAANAA8AAAAAAAAAAAANABAAAAAAAAAAAAANABEAAAAAAAAAAAANABIAAAAAAAAAAAANABMAAAAAAAAAAAANABQAAAAAAAAAAAANABUAAAAAAAAAAAANABYAAAAAAAAAAAAOAP7/AAAAAAAAAAAOAP//AAAAAAAAAAAOAAAAAAAAAAAAAAAOAAEAAAAAAAAAAAAOAAIAAAAAAAAAAAAOAAMAAAAAAAAAAAAOAAQAAAAAAAAAAAAOAAUAAAAAAAAAAAAOAAYAAAAAAAAAAAAOAAcAAAAAAAAAAAAOAAgAAAAAAAAAAAAOAAkAAAAAAAAAAAAOAAoAAAAAAAAAAAAOAAsAAAAAAAAAAAAOAAwAAAAAAAAAAAAOAA0AAAAAAAAAAAAOAA4AAAAAAAAAAAAOAA8AAAAAAAAAAAAOABAAAAAAAAAAAAAOABEAAAAAAAAAAAAOABIAAAAAAAAAAAAOABMAAAAAAAAAAAAOABQAAAAAAAAAAAAOABUAAAAAAAAAAAAOABYAAAAAAAAAAAAPAP7/AAAAAAAAAAAPAP//AAAAAAAAAAAPAAAAAAAAAAAAAAAPAAEAAAAAAAAAAAAPAAIAAAAAAAAAAAAPAAMAAAAAAAAAAAAPAAQAAAAAAAAAAAAPAAUAAAAAAAAAAAAPAAYAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAAAAAAPAAwAAAAAAAAAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAAAAAAPAA8AAAAAAAAAAAAPABAAAAAAAAAAAAAPABEAAAAAAAAAAAAPABIAAAAAAAAAAAAPABMAAAAAAAAAAAAPABQAAAAAAAAAAAAPABUAAAAAAAAAAAAPABYAAAAAAAAAAAAQAP7/AAAAAAAAAAAQAP//AAAAAAAAAAAQAAAAAAAAAAAAAAAQAAEAAAAAAAAAAAAQAAIAAAAAAAAAAAAQAAMAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAUAAAAAAAAAAAAQAAYAAAAAAAAAAAAQAAcAAAAAAAAAAAAQAAgAAAAAAAAAAAAQAAkAAAAAAAAAAAAQAAoAAAAAAAAAAAAQAAsAAAAAAAAAAAAQAAwAAAAAAAAAAAAQAA0AAAAAAAAAAAAQAA4AAAAAAAAAAAAQAA8AAAAAAAAAAAAQABAAAAAAAAAAAAAQABEAAAAAAAAAAAAQABIAAAAAAAAAAAAQABMAAAAAAAAAAAAQABQAAAAAAAAAAAAQABUAAAAAAAAAAAAQABYAAAAAAAAAAAARAP7/AAAAAAAAAAARAP//AAAAAAAAAAARAAAAAAAAAAAAAAARAAEAAAAAAAAAAAARAAIAAAAAAAAAAAARAAMAAAAAAAAAAAARAAQAAAAAAAAAAAARAAUAAAAAAAAAAAARAAYAAAAAAAAAAAARAAcAAAAAAAAAAAARAAgAAAAAAAAAAAARAAkAAAAAAAAAAAARAAoAAAAAAAAAAAARAAsAAAAAAAAAAAARAAwAAAAAAAAAAAARAA0AAAAAAAAAAAARAA4AAAAAAAAAAAARAA8AAAAAAAAAAAARABAAAAAAAAAAAAARABEAAAAAAAAAAAARABIAAAAAAAAAAAARABMAAAAAAAAAAAARABQAAAAAAAAAAAARABUAAAAAAAAAAAARABYAAAAAAAAAAAASAP7/AAAAAAAAAAASAP//AAAAAAAAAAASAAAAAAAAAAAAAAASAAEAAAAAAAAAAAASAAIAAAAAAAAAAAASAAMAAAAAAAAAAAASAAQAAAAAAAAAAAASAAUAAAAAAAAAAAASAAYAAAAAAAAAAAASAAcAAAAAAAAAAAASAAgAAAAAAAAAAAASAAkAAAAAAAAAAAASAAoAAAAAAAAAAAASAAsAAAAAAAAAAAASAAwAAAAAAAAAAAASAA0AAAAAAAAAAAASAA4AAAAAAAAAAAASAA8AAAAAAAAAAAASABAAAAAAAAAAAAASABEAAAAAAAAAAAASABIAAAAAAAAAAAASABMAAAAAAAAAAAASABQAAAAAAAAAAAASABUAAAAAAAAAAAASABYAAAAAAAAAAAATAP7/AAAAAAAAAAATAP//AAAAAAAAAAATAAAAAAAAAAAAAAATAAEAAAAAAAAAAAATAAIAAAAAAAAAAAATAAMAAAAAAAAAAAATAAQAAAAAAAAAAAATAAUAAAAAAAAAAAATAAYAAAAAAAAAAAATAAcAAAAAAAAAAAATAAgAAAAAAAAAAAATAAkAAAAAAAAAAAATAAoAAAAAAAAAAAATAAsAAAAAAAAAAAATAAwAAAAAAAAAAAATAA0AAAAAAAAAAAATAA4AAAAAAAAAAAATAA8AAAAAAAAAAAATABAAAAAAAAAAAAATABEAAAAAAAAAAAATABIAAAAAAAAAAAATABMAAAAAAAAAAAATABQAAAAAAAAAAAATABUAAAAAAAAAAAATABYAAAAAAAAAAAAUAP7/AAAAAAAAAAAUAP//AAAAAAAAAAAUAAAAAAAAAAAAAAAUAAEAAAAAAAAAAAAUAAIAAAAAAAAAAAAUAAMAAAAAAAAAAAAUAAQAAAAAAAAAAAAUAAUAAAAAAAAAAAAUAAYAAAAAAAAAAAAUAAcAAAAAAAAAAAAUAAgAAAAAAAAAAAAUAAkAAAAAAAAAAAAUAAoAAAAAAAAAAAAUAAsAAAAAAAAAAAAUAAwAAAAAAAAAAAAUAA0AAAAAAAAAAAAUAA4AAAAAAAAAAAAUAA8AAAAAAAAAAAAUABAAAAAAAAAAAAAUABEAAAAAAAAAAAAUABIAAAAAAAAAAAAUABMAAAAAAAAAAAAUABQAAAAAAAAAAAAUABUAAAAAAAAAAAAUABYAAAAAAAAAAAAVAP7/AAAAAAAAAAAVAP//AAAAAAAAAAAVAAAAAAAAAAAAAAAVAAEAAAAAAAAAAAAVAAIAAAAAAAAAAAAVAAMAAAAAAAAAAAAVAAQAAAAAAAAAAAAVAAUAAAAAAAAAAAAVAAYAAAAAAAAAAAAVAAcAAAAAAAAAAAAVAAgAAAAAAAAAAAAVAAkAAAAAAAAAAAAVAAoAAAAAAAAAAAAVAAsAAAAAAAAAAAAVAAwAAAAAAAAAAAAVAA0AAAAAAAAAAAAVAA4AAAAAAAAAAAAVAA8AAAAAAAAAAAAVABAAAAAAAAAAAAAVABEAAAAAAAAAAAAVABIAAAAAAAAAAAAVABMAAAAAAAAAAAAVABQAAAAAAAAAAAAVABUAAAAAAAAAAAAVABYAAAAAAAAAAAAWAP7/AAAAAAAAAAAWAP//AAAAAAAAAAAWAAAAAAAAAAAAAAAWAAEAAAAAAAAAAAAWAAIAAAAAAAAAAAAWAAMAAAAAAAAAAAAWAAQAAAAAAAAAAAAWAAUAAAAAAAAAAAAWAAYAAAAAAAAAAAAWAAcAAAAAAAAAAAAWAAgAAAAAAAAAAAAWAAkAAAAAAAAAAAAWAAoAAAAAAAAAAAAWAAsAAAAAAAAAAAAWAAwAAAAAAAAAAAAWAA0AAAAAAAAAAAAWAA4AAAAAAAAAAAAWAA8AAAAAAAAAAAAWABAAAAAAAAAAAAAWABEAAAAAAAAAAAAWABIAAAAAAAAAAAAWABMAAAAAAAAAAAAWABQAAAAAAAAAAAAWABUAAAAAAAAAAAAWABYAAAAAAAAAAAD8//z/AAABAAAAAAD9//z/AAABAAAAAAD+//z/AAABAAAAAAD///z/AAABAAAAAAAAAPz/AAABAAAAAAABAPz/AAABAAAAAAACAPz/AAABAAAAAAADAPz/AAABAAAAAAAEAPz/AAABAAAAAAAFAPz/AAABAAAAAAAGAPz/AAABAAAAAAAHAPz/AAABAAAAAAAIAPz/AAABAAAAAAAJAPz/AAABAAAAAAAKAPz/AAABAAAAAAALAPz/AAABAAAAAAAMAPz/AAABAAAAAAANAPz/AAABAAAAAAAOAPz/AAABAAAAAAAPAPz/AAABAAAAAAAQAPz/AAABAAAAAAARAPz/AAABAAAAAAASAPz/AAABAAAAAAATAPz/AAABAAAAAAAUAPz/AAABAAAAAAAVAPz/AAABAAAAAAAWAPz/AAABAAAAAAD7//v/AAACAAAAAAD7//z/AAACAAAAAAD7//3/AAACAAAAAAD7//7/AAACAAAAAAD7////AAACAAAAAAD7/wAAAAACAAAAAAD7/wEAAAACAAAAAAD7/wIAAAACAAAAAAD7/wMAAAACAAAAAAD7/wQAAAACAAAAAAD7/wUAAAACAAAAAAD7/wYAAAACAAAAAAD7/wcAAAACAAAAAAD7/wgAAAACAAAAAAD7/wkAAAACAAAAAAD7/woAAAACAAAAAAD7/wsAAAACAAAAAAD7/wwAAAACAAAAAAD7/w0AAAACAAAAAAD7/w4AAAACAAAAAAD7/w8AAAACAAAAAAD7/xAAAAACAAAAAAD7/xEAAAACAAAAAAD7/xIAAAACAAAAAAD7/xMAAAACAAAAAAD7/xQAAAACAAAAAAD7/xUAAAACAAAAAAD7/xYAAAACAAAAAAAXAPv/AAACAAEAAAAXAPz/AAACAAEAAAAXAP3/AAACAAEAAAAXAP7/AAACAAEAAAAXAP//AAACAAEAAAAXAAAAAAACAAEAAAAXAAEAAAACAAEAAAAXAAIAAAACAAEAAAAXAAMAAAACAAEAAAAXAAQAAAACAAEAAAAXAAUAAAACAAEAAAAXAAYAAAACAAEAAAAXAAcAAAACAAEAAAAXAAgAAAACAAEAAAAXAAkAAAACAAEAAAAXAAoAAAACAAEAAAAXAAsAAAACAAEAAAAXAAwAAAACAAEAAAAXAA0AAAACAAEAAAAXAA4AAAACAAEAAAAXAA8AAAACAAEAAAAXABAAAAACAAEAAAAXABEAAAACAAEAAAAXABIAAAACAAEAAAAXABMAAAACAAEAAAAXABQAAAACAAEAAAAXABUAAAACAAEAAAAXABYAAAACAAEAAAD8/xcAAAACAAIAAAD9/xcAAAACAAIAAAD+/xcAAAACAAIAAAD//xcAAAACAAIAAAAAABcAAAACAAIAAAABABcAAAACAAIAAAACABcAAAACAAIAAAADABcAAAACAAIAAAAEABcAAAACAAIAAAAFABcAAAACAAIAAAAGABcAAAACAAIAAAAHABcAAAACAAIAAAAIABcAAAACAAIAAAAJABcAAAACAAIAAAAKABcAAAACAAIAAAALABcAAAACAAIAAAAMABcAAAACAAIAAAANABcAAAACAAIAAAAOABcAAAACAAIAAAAPABcAAAACAAIAAAAQABcAAAACAAIAAAARABcAAAACAAIAAAASABcAAAACAAIAAAATABcAAAACAAIAAAAUABcAAAACAAIAAAAVABcAAAACAAIAAAAWABcAAAACAAIAAAA=")
-tile_set = ExtResource("1_r150o")
-
-[node name="Player" parent="." unique_id=185942452 instance=ExtResource("2_kln2b")]
-position = Vector2(24, 18)
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=554506989]
-position = Vector2(24, 18)
-script = ExtResource("2_idj7w")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1072975527]
-environment = ExtResource("4_rgh2o")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1605340611]
-color = Color(0.9122889, 0.9122889, 0.9122887, 1)
-
-[node name="Puck" parent="." unique_id=2011018015 instance=ExtResource("5_pbw6q")]
-position = Vector2(-40, -6)
-
 [node name="TestingGround" type="Node2D" parent="." unique_id=968163292]
+visible = false
 script = SubResource("GDScript_dhcmq")
 
 [node name="A" type="Node2D" parent="TestingGround" unique_id=636193194]
@@ -75,7 +470,6 @@ position = Vector2(0, -9)
 [node name="UI" type="CanvasLayer" parent="." unique_id=919689236]
 
 [node name="MainMenu" type="PanelContainer" parent="UI" unique_id=76632732]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -99,6 +493,7 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="UI/MainMenu/MarginContainer/VBoxContainer/VBoxContainer" unique_id=871030808]
 layout_mode = 2
+offset_transform_enabled = true
 theme_override_fonts/font = ExtResource("6_jw32o")
 theme_override_font_sizes/font_size = 18
 text = "[Game Name]"
@@ -109,11 +504,14 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="UI/MainMenu/MarginContainer/VBoxContainer" unique_id=1002787708]
 layout_mode = 2
+offset_transform_position = Vector2(-150, 0)
 
 [node name="Button" type="Button" parent="UI/MainMenu/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=22500603]
 custom_minimum_size = Vector2(100, 24)
 layout_mode = 2
 size_flags_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-150, 0)
 theme_override_fonts/font = ExtResource("7_50glp")
 theme_override_font_sizes/font_size = 20
 text = "PLAY"
@@ -122,6 +520,8 @@ text = "PLAY"
 custom_minimum_size = Vector2(100, 24)
 layout_mode = 2
 size_flags_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-150, 0)
 theme_override_fonts/font = ExtResource("7_50glp")
 theme_override_font_sizes/font_size = 20
 text = "OPTIONS"
@@ -130,6 +530,8 @@ text = "OPTIONS"
 custom_minimum_size = Vector2(100, 24)
 layout_mode = 2
 size_flags_horizontal = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-150, 0)
 theme_override_fonts/font = ExtResource("7_50glp")
 theme_override_font_sizes/font_size = 20
 text = "QUIT"
@@ -138,14 +540,18 @@ text = "QUIT"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="BodySelector" type="ColorRect" parent="UI" unique_id=1790709040]
+[node name="BodySelector" type="ColorRect" parent="UI" unique_id=1790709040 node_paths=PackedStringArray("animator")]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.37254903)
+offset_transform_enabled = true
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+script = ExtResource("8_vy5pj")
+animator = NodePath("../AnimationPlayer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/BodySelector" unique_id=1264875982]
 layout_mode = 1
@@ -154,160 +560,37 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 theme_override_constants/separation = 11
 alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/BodySelector/HBoxContainer" unique_id=656660276]
-custom_minimum_size = Vector2(64, 90)
+[node name="PanelContainer" parent="UI/BodySelector/HBoxContainer" unique_id=1742290694 instance=ExtResource("9_bmxlf")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 200)
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/BodySelector/HBoxContainer/PanelContainer" unique_id=197947413]
+[node name="PanelContainer2" parent="UI/BodySelector/HBoxContainer" unique_id=2035051878 instance=ExtResource("9_bmxlf")]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 200)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/BodySelector/HBoxContainer/PanelContainer/MarginContainer" unique_id=1239850972]
+[node name="PanelContainer3" parent="UI/BodySelector/HBoxContainer" unique_id=736541725 instance=ExtResource("9_bmxlf")]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 200)
 
-[node name="Label" type="Label" parent="UI/BodySelector/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=25417216]
+[node name="PanelContainer4" parent="UI/BodySelector/HBoxContainer" unique_id=823149664 instance=ExtResource("9_bmxlf")]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("7_50glp")
-theme_override_font_sizes/font_size = 15
-text = "BODY 1"
-horizontal_alignment = 1
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 200)
 
-[node name="Button" type="Button" parent="UI/BodySelector/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1690568398]
-custom_minimum_size = Vector2(0, 20)
+[node name="PanelContainer5" parent="UI/BodySelector/HBoxContainer" unique_id=1710498773 instance=ExtResource("9_bmxlf")]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("7_50glp")
-theme_override_font_sizes/font_size = 11
-text = "ATTEMPT"
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 200)
 
-[node name="PanelContainer2" type="PanelContainer" parent="UI/BodySelector/HBoxContainer" unique_id=1552678311]
-custom_minimum_size = Vector2(64, 90)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI" unique_id=1049398744]
+libraries/ = SubResource("AnimationLibrary_vy5pj")
+autoplay = &"In"
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/BodySelector/HBoxContainer/PanelContainer2" unique_id=1285869849]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/BodySelector/HBoxContainer/PanelContainer2/MarginContainer" unique_id=1056455113]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/BodySelector/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=2039821993]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("7_50glp")
-theme_override_font_sizes/font_size = 15
-text = "BODY 1"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="UI/BodySelector/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=1853521455]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("7_50glp")
-theme_override_font_sizes/font_size = 11
-text = "ATTEMPT"
-
-[node name="PanelContainer3" type="PanelContainer" parent="UI/BodySelector/HBoxContainer" unique_id=1095651043]
-custom_minimum_size = Vector2(64, 90)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/BodySelector/HBoxContainer/PanelContainer3" unique_id=1305929386]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/BodySelector/HBoxContainer/PanelContainer3/MarginContainer" unique_id=1443987613]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/BodySelector/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer" unique_id=1889147135]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("7_50glp")
-theme_override_font_sizes/font_size = 15
-text = "BODY 1"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="UI/BodySelector/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer" unique_id=514672395]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("7_50glp")
-theme_override_font_sizes/font_size = 11
-text = "ATTEMPT"
-
-[node name="PanelContainer4" type="PanelContainer" parent="UI/BodySelector/HBoxContainer" unique_id=851080690]
-custom_minimum_size = Vector2(64, 90)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/BodySelector/HBoxContainer/PanelContainer4" unique_id=769689952]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/BodySelector/HBoxContainer/PanelContainer4/MarginContainer" unique_id=1292001831]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/BodySelector/HBoxContainer/PanelContainer4/MarginContainer/VBoxContainer" unique_id=1556829493]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("7_50glp")
-theme_override_font_sizes/font_size = 15
-text = "BODY 1"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="UI/BodySelector/HBoxContainer/PanelContainer4/MarginContainer/VBoxContainer" unique_id=1670957384]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("7_50glp")
-theme_override_font_sizes/font_size = 11
-text = "ATTEMPT"
-
-[node name="PanelContainer5" type="PanelContainer" parent="UI/BodySelector/HBoxContainer" unique_id=325519955]
-custom_minimum_size = Vector2(64, 90)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/BodySelector/HBoxContainer/PanelContainer5" unique_id=585270570]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/BodySelector/HBoxContainer/PanelContainer5/MarginContainer" unique_id=573150593]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/BodySelector/HBoxContainer/PanelContainer5/MarginContainer/VBoxContainer" unique_id=1181680338]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("7_50glp")
-theme_override_font_sizes/font_size = 15
-text = "BODY 1"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="UI/BodySelector/HBoxContainer/PanelContainer5/MarginContainer/VBoxContainer" unique_id=478110502]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("7_50glp")
-theme_override_font_sizes/font_size = 11
-text = "ATTEMPT"
+[connection signal="pressed" from="UI/MainMenu/MarginContainer/VBoxContainer/VBoxContainer2/Button" to="UI/AnimationPlayer" method="play" binds= ["Main->Selector"]]

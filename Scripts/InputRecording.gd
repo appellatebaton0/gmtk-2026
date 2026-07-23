@@ -27,7 +27,9 @@ class_name InputRecording extends Resource
 	## Plays back the recorded changes. Relies on external timer.
 	## prepare_playback has to be ran before playback begins.
 	var remaining_changes:Dictionary[float, Variant]
-	func prepare_playback() -> void: remaining_changes = get_changes()
+	func prepare_playback() -> void: 
+		remaining_changes.clear()
+		remaining_changes.assign(get_changes().duplicate(true))
 	func playback(time:float) -> void:
 		for itime in remaining_changes:
 			if time > itime:
@@ -142,3 +144,8 @@ func playback(delta:float) -> void:
 		input.playback(recording_timer)
 	
 	recording_timer += delta
+
+func get_input(name:String) -> InputRecord:
+	for input:InputRecord in input_bank:
+		if input.get_name() == name: return input
+	return null
